@@ -1,24 +1,22 @@
-package com.spacex.tickets.domain;
+package com.spacex.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ticket_validation")
+@Table(name = "qr_code")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class TicketValidation {
+ public class QRCode {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -27,14 +25,13 @@ public class TicketValidation {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TicketValidationStatusEnum status;
+    private QrCodeStatusEnum status;
 
-    @Column(name = "validate_method", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TicketValidationMethod validationMethod;
+    @Column(name = "value", nullable = false)
+    private String value;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ticket_id")
+    @ManyToOne(fetch =  FetchType.LAZY)
+    @JoinColumn( name = "ticket_id")
     @Column(name = "ticket", nullable = false)
     private Ticket ticket;
 
@@ -49,12 +46,12 @@ public class TicketValidation {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        TicketValidation that = (TicketValidation) o;
-        return Objects.equals(id, that.id) && status == that.status && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
+        QRCode qrCode = (QRCode) o;
+        return Objects.equals(id, qrCode.id) && status == qrCode.status && Objects.equals(value, qrCode.value) && Objects.equals(createdAt, qrCode.createdAt) && Objects.equals(updatedAt, qrCode.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, createdAt, updatedAt);
+        return Objects.hash(id, status, value, createdAt, updatedAt);
     }
 }

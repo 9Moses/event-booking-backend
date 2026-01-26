@@ -1,6 +1,6 @@
 package com.spacex.tickets.respository;
 
-import com.spacex.tickets.domain.User;
+import com.spacex.tickets.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

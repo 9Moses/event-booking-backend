@@ -1,4 +1,4 @@
-package com.spacex.tickets.domain;
+package com.spacex.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
 package com.spacex.tickets.filters;
 
-import com.spacex.tickets.domain.User;
+import com.spacex.tickets.domain.entities.User;
 import com.spacex.tickets.respository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

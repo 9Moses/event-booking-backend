@@ -1,4 +1,4 @@
-package com.spacex.tickets.domain;
+package com.spacex.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,13 +10,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "qr_code")
+@Table(name = "ticket_validation")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
- public class QRCode {
+public class TicketValidation {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -25,13 +25,14 @@ import java.util.UUID;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private QrCodeStatusEnum status;
+    private TicketValidationStatusEnum status;
 
-    @Column(name = "value", nullable = false)
-    private String value;
+    @Column(name = "validate_method", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TicketValidationMethod validationMethod;
 
-    @ManyToOne(fetch =  FetchType.LAZY)
-    @JoinColumn( name = "ticket_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id")
     @Column(name = "ticket", nullable = false)
     private Ticket ticket;
 
@@ -46,12 +47,12 @@ import java.util.UUID;
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        QRCode qrCode = (QRCode) o;
-        return Objects.equals(id, qrCode.id) && status == qrCode.status && Objects.equals(value, qrCode.value) && Objects.equals(createdAt, qrCode.createdAt) && Objects.equals(updatedAt, qrCode.updatedAt);
+        TicketValidation that = (TicketValidation) o;
+        return Objects.equals(id, that.id) && status == that.status && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, value, createdAt, updatedAt);
+        return Objects.hash(id, status, createdAt, updatedAt);
     }
 }
