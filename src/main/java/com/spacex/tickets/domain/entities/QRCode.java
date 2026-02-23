@@ -32,7 +32,7 @@ import java.util.UUID;
 
     @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn( name = "ticket_id")
-    @Column(name = "ticket", nullable = false)
+    //@Column(name = "ticket", nullable = false)
     private Ticket ticket;
 
     @CreatedDate

@@ -33,12 +33,12 @@ public class Ticket {
     @JoinColumn(
             name = "ticket_type_id"
     )
-    @Column(name = "ticket_type", nullable = false)
+    //@Column(name = "ticket_type", nullable = false)
     private TicketType ticketType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchaser_id")
-    @Column(name = "purchaser", nullable = false, updatable = false)
+   // @Column(name = "purchaser", nullable = false, updatable = false)
     private User purchaser;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)

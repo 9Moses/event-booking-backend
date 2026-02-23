@@ -2,10 +2,9 @@ package com.spacex.tickets.mappers;
 
 import com.spacex.tickets.domain.CreateEventRequest;
 import com.spacex.tickets.domain.CreateTicketTypeRequest;
-import com.spacex.tickets.domain.dto.CreateEventRequestDTO;
-import com.spacex.tickets.domain.dto.CreateEventResponseDto;
-import com.spacex.tickets.domain.dto.CreateTicketTypeRequestDto;
+import com.spacex.tickets.domain.dto.*;
 import com.spacex.tickets.domain.entities.Event;
+import com.spacex.tickets.domain.entities.TicketType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -17,4 +16,8 @@ public interface EventMapper {
     CreateEventRequest fromDto(CreateEventRequestDTO dto);
 
     CreateEventResponseDto toDto(Event event);
+
+    ListEventTicketTypeResponseDto toDto(TicketType ticketType);
+
+    ListEventResponseDto toListEventResponseDto(Event event);
 }
